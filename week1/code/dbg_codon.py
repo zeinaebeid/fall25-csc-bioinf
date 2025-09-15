@@ -17,7 +17,7 @@ class Node:
         self.kmer = kmer
         self.visited = False
         self.depth = 0
-        self.max_depth_child = -1    # -1 = no child
+        self.max_depth_child = -1    # -1 means “none”
 
     def add_child(self, idx_child: int):
         self._children.add(idx_child)
@@ -72,7 +72,7 @@ class DBG:
                         self._add_arc(rk1, rk2)
 
     def _add_node(self, kmer: str) -> int:
-        if kmer == "" or len(kmer) != self.k:
+        if not kmer or len(kmer) != self.k:
             return -1
         idx = self.kmer2idx.get(kmer, -1)
         if idx == -1:
@@ -120,7 +120,7 @@ class DBG:
             d = self._get_depth(idx)
             if d > max_d:
                 max_d, max_idx = d, idx
-        path = []
+        path: List[int] = []
         while max_idx != -1:
             path.append(max_idx)
             max_idx = self.nodes[max_idx].max_depth_child

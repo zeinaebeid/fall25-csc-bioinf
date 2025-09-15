@@ -1,9 +1,8 @@
-import os
 from typing import List, Tuple
 
 def read_fasta(path: str, name: str) -> List[str]:
     data: List[str] = []
-    filename = os.path.join(path, name)
+    filename = path + "/" + name   # replace os.path.join with simple concat
     with open(filename, "r") as f:
         for line in f:
             line = line.strip()
