@@ -1,33 +1,26 @@
-from dbg_codon import DBG
-from utils_codon import read_data
+from dbg import DBG
+from utils import read_data
 import sys
+import os
+from typing import List, Tuple
 
-
-def usage():
-    sys.stderr.write("usage: main_codon.py <dataset_dir>\n")
-    sys.exit(2)
-
+sys.setrecursionlimit(1000000)
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        usage()
+    argv: List[str] = sys.argv
+    short1: List[str]
+    short2: List[str]
+    long1: List[str]
+    short1, short2, long1 = read_data(os.path.join('./', argv[1]))
 
-    # Codon does not support os.path.join → use simple string concat
-    dataset_path = "./" + sys.argv[1]
-
-    short1, short2, long1 = read_data(dataset_path)
-
-    k = 25
-    dbg = DBG(k=k, data_list=[short1, short2, long1])
-
-    output_file = dataset_path + "/contigs_codon.fasta"
-    with open(output_file, "w") as f:
+    k: int = 25
+    dbg: DBG = DBG(k=k, data_list=[short1, short2, long1])
+    # dbg.show_count_distribution()
+    with open(os.path.join('./', argv[1], 'contig.fasta'), 'w') as f:
         for i in range(20):
-            contig = dbg.get_longest_contig()
-            if contig == "":   # use empty string instead of None
+            c: str | None = dbg.get_longest_contig()
+            if c is None:
                 break
-            print(i, len(contig))
-            f.write(f">contig_{i}\n{contig}\n")
-
-    # write status to stderr (so stdout stays clean if redirected)
-    print(f"[Codon] Wrote contigs to {output_file}", file=sys.stderr)
+            print(i, len(c))
+            f.write('>contig_%d\n' % i)
+            f.write(c + '\n')
