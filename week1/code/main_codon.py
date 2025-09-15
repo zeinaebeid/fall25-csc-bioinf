@@ -3,8 +3,6 @@ from utils_codon import read_data
 import sys
 import os
 
-# Codon has stricter recursion behavior, but we can keep this for safety
-sys.setrecursionlimit(1000000)
 
 def usage():
     sys.stderr.write("usage: main_codon.py <dataset_dir>\n")
