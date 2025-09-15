@@ -1,6 +1,5 @@
 import os
 
-
 def read_fasta(path, name):
     data = []
     with open(os.path.join(path, name), 'r') as f:
