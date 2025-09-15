@@ -4,7 +4,6 @@ import sys
 import os
 from typing import List, Tuple
 
-sys.setrecursionlimit(1000000)
 
 if __name__ == "__main__":
     argv: List[str] = sys.argv
