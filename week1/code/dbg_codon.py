@@ -61,9 +61,18 @@ class DBG:
         for data in data_list:
             for original in data:
                 rc = reverse_complement(original)
-                for i in range(len(original) - self.k - 1):
-                    self._add_arc(original[i: i + self.k], original[i + 1: i + 1 + self.k])
-                    self._add_arc(rc[i: i + self.k], rc[i + 1: i + 1 + self.k])
+                # loop over valid indices only
+                for i in range(len(original) - self.k + 1):
+                    kmer1 = original[i:i + self.k]
+                    kmer2 = original[i + 1:i + 1 + self.k]
+                    if len(kmer1) == self.k and len(kmer2) == self.k:
+                        self._add_arc(kmer1, kmer2)
+
+                    kmer1_rc = rc[i:i + self.k]
+                    kmer2_rc = rc[i + 1:i + 1 + self.k]
+                    if len(kmer1_rc) == self.k and len(kmer2_rc) == self.k:
+                        self._add_arc(kmer1_rc, kmer2_rc)
+
 
     #def show_count_distribution(self):
      #   count = [0] * 30
