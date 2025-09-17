@@ -83,5 +83,25 @@ Even with all that, Codon still wouldn’t run `data2`/`data4` on 8 GB. The Pyth
 - Ideally, Codon should be ran using 16-32GB RAM in order to avoid premature termination.
 
 
-## AI Usage 🤖
-- All AI usage is documented under `week1/ai.md` as required. 
+## AI Usage 
+- All AI usage is documented under `week1/ai.md` as required.
+
+  
+## ⭐️ BONUS ⭐️ 
+
+### **Method:** I used the NCBI **BLASTN** website.
+
+**Steps:** 
+1. Opened **NCBI BLASTN** → Nucleotide Blast → Upload FASTA file.
+3. Uploaded `contig.fasta` for **data1** and ran BLAST with default parameters.
+4. Reviewed the best matches.
+
+**Result for data1**
+- Top Match:
+  - **Organism:** *Porphyromonas gingivalis* strain W50/BE1
+  - **Description:** chromosome, complete genome
+
+
+
+<img width="783" height="208" alt="Screenshot 2025-09-17 at 4 47 50 PM" src="https://github.com/user-attachments/assets/fea18919-6671-4873-9833-fccfdb175090" />
+
