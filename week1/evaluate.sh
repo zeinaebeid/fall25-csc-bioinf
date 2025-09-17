@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# week1/evaluate.sh
 set -euo pipefail
+[ -n "${TRACE:-}" ] && set -x
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")"/.. && pwd)"
 CODE="$ROOT/week1/code"
