@@ -97,11 +97,11 @@ Even with all that, Codon still wouldn’t run `data2`/`data4` on 8 GB. The Pyth
 4. Reviewed the best matches.
 
 **Result for data1**
-- Top Match:
   - **Organism:** *Porphyromonas gingivalis* strain W50/BE1
   - **Description:** chromosome, complete genome
 
 
 
 <img width="783" height="208" alt="Screenshot 2025-09-17 at 4 47 50 PM" src="https://github.com/user-attachments/assets/fea18919-6671-4873-9833-fccfdb175090" />
+
 
