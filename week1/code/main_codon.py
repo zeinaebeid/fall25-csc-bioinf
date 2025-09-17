@@ -1,25 +1,32 @@
-from dbg import DBG
-from utils import read_data
+from typing import List
 import sys
-import os
-from typing import List, Tuple
+from dbg_codon import DBG
+from utils_codon import read_data, join  
+
+
+def main(argv: List[str]) -> int:
+    if len(argv) < 2:
+        print("Usage: main_codon.py <dataset_dir>\n"
+              "Example: codon run -release main_codon.py week1/data/data1")
+        return 2
+
+    dataset_dir = argv[1]
+
+    short1, short2, long1 = read_data(dataset_dir)
+
+    k = 25
+    dbg = DBG(k=k, data_list=[short1, short2, long1])
+
+    out_fp = join(dataset_dir, "contig.fasta")
+    with open(out_fp, "w") as f:
+        for i in range(20):
+            c = dbg.get_longest_contig()
+            if not c:
+                break
+            print(i, len(c))
+            f.write(f">contig_{i}\n")
+            f.write(c + "\n")
 
 
 if __name__ == "__main__":
-    argv: List[str] = sys.argv
-    short1: List[str]
-    short2: List[str]
-    long1: List[str]
-    short1, short2, long1 = read_data(os.path.join('./', argv[1]))
-
-    k: int = 25
-    dbg: DBG = DBG(k=k, data_list=[short1, short2, long1])
-    # dbg.show_count_distribution()
-    with open(os.path.join('./', argv[1], 'contig.fasta'), 'w') as f:
-        for i in range(20):
-            c: str | None = dbg.get_longest_contig()
-            if c is None:
-                break
-            print(i, len(c))
-            f.write('>contig_%d\n' % i)
-            f.write(c + '\n')
+    sys.exit(main(sys.argv))

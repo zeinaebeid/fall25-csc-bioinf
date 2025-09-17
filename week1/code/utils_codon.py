@@ -1,19 +1,27 @@
-import os
-from typing import List, Tuple
+from typing import List
 
-def read_fasta(path: str, name: str) -> List[str]:
-    data: List[str] = []
-    with open(os.path.join(path, name), 'r') as f:
-        for line in f.readlines():
-            line = line.strip()
-            if line.startswith('>'):
+def join(a: str, b: str) -> str:
+    return (a if a.endswith("/") else a + "/") + b
+
+def read_fasta(dirpath: str, name: str) -> List[str]:
+    fp = join(dirpath, name)
+    seqs: List[str] = []
+    with open(fp, "r") as f:
+        for line in f:
+            s = line.strip()
+            if not s:
                 continue
-            data.append(line)
-    print(name, len(data), len(data[0]) if data else 0)
-    return data
+            if s[0] != ">":
+                seqs.append(s.upper()) 
 
-def read_data(path: str) -> Tuple[List[str], List[str], List[str]]:
-    short1: List[str] = read_fasta(path, "short_1.fasta")
-    short2: List[str] = read_fasta(path, "short_2.fasta")
-    long1: List[str] = read_fasta(path, "long.fasta")
+    if len(seqs) > 0:
+        print(name, len(seqs), len(seqs[0]))
+    else:
+        print(name, 0, 0)
+    return seqs
+
+def read_data(dirpath: str):
+    short1 = read_fasta(dirpath, "short_1.fasta")
+    short2 = read_fasta(dirpath, "short_2.fasta")
+    long1  = read_fasta(dirpath, "long.fasta")
     return short1, short2, long1
