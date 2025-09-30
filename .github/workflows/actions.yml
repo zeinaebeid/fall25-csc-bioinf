@@ -1,5 +1,15 @@
 name: Github CI
-on: [push]
+on:
+  push:
+    paths:
+      - 'week1/**'                       # run only when week1 files change
+      - '.github/workflows/actions.yml'  # or when this workflow is edited
+  # Optional: uncomment to also trigger on PRs that touch week1
+  # pull_request:
+  #   paths:
+  #     - 'week1/**'
+  #     - '.github/workflows/actions.yml'
+
 jobs:
   test:
     runs-on: ubuntu-latest
