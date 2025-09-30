@@ -1,14 +1,12 @@
 name: Github CI
 on: [push]
 jobs:
-#-------------------------- Week 1 ------------------------
   test:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-     
       - name: Install Codon
         run: |
           mkdir -p ${HOME}/.codon
@@ -16,14 +14,11 @@ jobs:
           curl -L https://github.com/exaloop/seq/releases/download/v0.11.5/seq-linux-x86_64.tar.gz | tar zxvf - -C ${HOME}/.codon/lib/codon/plugins
           export PATH=${PATH}:${HOME}/.codon/bin
           echo "PATH=${PATH}" >> $GITHUB_ENV
-     
       - name: Check out repository code
         uses: actions/checkout@v5
-    
       - uses: actions/setup-python@v6
         with:
           python-version: '3.13'
-    
       - name: Set up Codon Python bridge
         run: |
           pip install find_libpython
@@ -32,13 +27,6 @@ jobs:
           echo "CODON_PYTHON=${CODON_PYTHON}" >> $GITHUB_ENV
           pip install matplotlib  # Dependencies for week1
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-    
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-    
-      - name: Ensure evaluate.sh is executable
-        run: chmod +x week1/evaluate.sh
-
-      - name: Week 1 (guard with timeout to avoid hangs)
-        run: timeout 10m bash week1/evaluate.sh
-
-# ---------------- Week2 (TRviz parity tests) --------------
+      - name: Week 1
+        run: bash week1/evaluate.sh
