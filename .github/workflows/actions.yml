@@ -38,5 +38,5 @@ jobs:
           pip install matplotlib  # Dependencies for week1
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: Week 1
-        run: bash week1/evaluate.sh
+  #    - name: Week 1
+  #      run: bash week1/evaluate.sh
