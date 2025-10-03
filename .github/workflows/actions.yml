@@ -1,15 +1,5 @@
 name: Github CI
-on:
-  push:
-    paths:
-      - 'week1/**'                       # run only when week1 files change
-      - '.github/workflows/actions.yml'  # or when this workflow is edited
-  # Optional: uncomment to also trigger on PRs that touch week1
-  # pull_request:
-  #   paths:
-  #     - 'week1/**'
-  #     - '.github/workflows/actions.yml'
-
+on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -38,5 +28,11 @@ jobs:
           pip install matplotlib  # Dependencies for week1
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-  #    - name: Week 1
-  #      run: bash week1/evaluate.sh
+      
+    #---------------------- Week 1 Deliverable --------------------------------
+    #  - name: Week 1
+    #   run: bash week1/evaluate.sh
+    
+    #---------------------- Week 2 Deliverable  -------------------------------------
+      - name: Week 2
+        run: bask week2/evaluate.sh
