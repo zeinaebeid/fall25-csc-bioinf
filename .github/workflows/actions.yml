@@ -35,4 +35,4 @@ jobs:
     
     #---------------------- Week 2 Deliverable  -------------------------------------
       - name: Week 2
-        run: bask week2/evaluate.sh
+        run: bash week2/evaluate.sh
