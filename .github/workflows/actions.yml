@@ -38,6 +38,10 @@ jobs:
     #    run: bash week2/evaluate.sh
 
     #---------------------- Week 3 Deliverable  -------------------------------------
-      - name: Week 3
-        run: bash week3/evaluate.sh
-
+    #  - name: Week 3
+    #    run: bash week3/evaluate.sh
+        
+    #---------------------- Week 4 Deliverable  -------------------------------------
+      - name: Week 4
+        run: bash week4/evaluate.sh
+    
