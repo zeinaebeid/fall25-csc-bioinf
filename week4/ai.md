@@ -33,7 +33,6 @@ This document discloses where and how I used AI/translation tools during the Wee
 
 
 ## Example Prompts (summarized)
-
 - "Create an `alignment.py` compatible with Codon and Python that supports all 4 required methods.”
 - “GitHub CI cancels on Python MT—modify `evaluate.sh` to skip Python MT and run MT in Codon.”
 - **From the professor’s sample prompts:** “Convert this Python DP to Codon, ensuring homogeneous list types and no empty-literal ambiguity,” “Replace unsupported formatting/imports,” “Mark Optionals and class fields explicitly.”
