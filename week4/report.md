@@ -67,5 +67,7 @@ global-q1         codon       0.004ms
 
 - **Fix applied for CI.** I updated `evaluate.sh` to **skip MT-human in Python** and run the MT pair **only under Codon**, which is faster and stable on CI. The q1–q5 sets still run under both Python and Codon, preserving parity checks.
 
+<img width="464" height="716" alt="Screenshot 2025-10-20 at 6 59 05 PM" src="https://github.com/user-attachments/assets/c4298f6d-e6cf-41c1-bb09-bc0b580ca900" />
+
 
 
