@@ -1,8 +1,3 @@
- """Codon and Python compatible code - 
-    Implements global alignment; local alignment;
-    semi-global (fitting) alignment; 
-    and affine gap penalty global alignment."""
-
 import time
 import sys
 from typing import List
