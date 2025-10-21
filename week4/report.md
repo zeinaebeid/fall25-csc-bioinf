@@ -63,7 +63,7 @@ global-q1         codon       0.004ms
 
 ## Gotchas
 
-- **Local vs CI behavior.** All tests passed on my laptop (see screenshot below), but the GitHub CI job consistently canceled right after the Python `affine-q5` row when it tried to run the **MT-human vs MT-orang** case in Python. This is likely due to runtime/resource differences on the CI runner.
+- **Local vs CI behavior.** All tests passed on my laptop **(see screenshot below)**, but the GitHub CI job consistently canceled right after the Python `affine-q5` row when it tried to run the **MT-human vs MT-orang** case in Python. This is likely due to runtime/resource differences on the CI runner.
 
 - **Fix applied for CI.** I updated `evaluate.sh` to **skip MT-human in Python** and run the MT pair **only under Codon**, which is faster and stable on CI. The q1–q5 sets still run under both Python and Codon, preserving parity checks.
 
