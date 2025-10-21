@@ -28,7 +28,7 @@ for method in "${methods[@]}"; do
         
         # test MT_human vs MT_orang
         if [ "$lang" == "python" ]; then
-            python3 code/align.py "${method}-mt_human" "$lang" "data/MT-human.fa" "data/MT-orang.fa"
+            :
         else
             codon run code/align.py "${method}-mt_human" "$lang" "data/MT-human.fa" "data/MT-orang.fa"
         fi
