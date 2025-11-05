@@ -42,6 +42,49 @@ jobs:
     #    run: bash week3/evaluate.sh
         
     #---------------------- Week 4 Deliverable  -------------------------------------
-      - name: Week 4
-        run: bash week4/evaluate.sh
+    #  - name: Week 4
+    #    run: bash week4/evaluate.sh
     
+    #---------------------- Week 5/6 Deliverable  -------------------------------------
+      - name: Set up bioinformatics toolchain (bioconda)
+        uses: mamba-org/setup-micromamba@v1
+        with:
+          micromamba-version: "latest"
+          environment-name: bio
+          init-shell: bash
+          cache-downloads: true
+          cache-environment: true
+          create-args: >-
+            python=3.11
+            jupyter
+            nbconvert
+            wget curl bzip2
+            samtools
+            bcftools
+            minimap2
+            whatshap
+            seqkit
+            htslib
+            pysam
+            pandoc
+
+      - name: Execute week5 notebook
+        shell: bash -l {0}
+        run: |
+          cd week5
+          # make sure we have a long timeout for align/call/phase
+          jupyter nbconvert --to notebook --execute week5.ipynb \
+            --output week5_executed.ipynb \
+            --ExecutePreprocessor.timeout=7200
+
+      - name: Upload Week 5 artifacts (executed notebook + key outputs)
+        uses: actions/upload-artifact@v4
+        with:
+          name: week5-artifacts
+          path: |
+            week5/week5_executed.ipynb
+            week5/results/**
+            week5/variants/**
+            week5/alignments/**/*.bai
+            week5/alignments/**/*.bam.bai
+          if-no-files-found: warn
