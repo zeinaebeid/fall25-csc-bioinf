@@ -56,35 +56,31 @@ jobs:
           cache-environment: true
           create-args: >-
             python=3.11
-            jupyter
-            nbconvert
+            jupyter nbclient nbconvert ipykernel
             wget curl bzip2
             samtools
             bcftools
             minimap2
-            whatshap
-            seqkit
+            hapcut2
             htslib
-            pysam
-            pandoc
+            pandas
+            pip
 
-      - name: Execute week5 notebook
+      - name: Register Jupyter kernel for this env
         shell: bash -l {0}
         run: |
-          cd week5
-          # make sure we have a long timeout for align/call/phase
-          jupyter nbconvert --to notebook --execute week5.ipynb \
-            --output week5_executed.ipynb \
-            --ExecutePreprocessor.timeout=7200
+          python -m ipykernel install --user --name=bio --display-name "Python (bio)"
 
-      - name: Upload Week 5 artifacts (executed notebook + key outputs)
-        uses: actions/upload-artifact@v4
-        with:
-          name: week5-artifacts
-          path: |
-            week5/week5_executed.ipynb
-            week5/results/**
-            week5/variants/**
-            week5/alignments/**/*.bai
-            week5/alignments/**/*.bam.bai
-          if-no-files-found: warn
+      - name: Execute week5.ipynb (as required: `jupyter execute week5.ipynb`)
+        shell: bash -l {0}
+        working-directory: week5
+        run: |
+          jupyter execute week5.ipynb \
+            --inplace \
+            --ExecutePreprocessor.kernel_name=bio \
+            --ExecutePreprocessor.timeout=7200 \
+          || \
+          jupyter nbconvert --to notebook --execute week5.ipynb \
+            --output week5.ipynb \
+            --ExecutePreprocessor.kernel_name=bio \
+            --ExecutePreprocessor.timeout=7200
