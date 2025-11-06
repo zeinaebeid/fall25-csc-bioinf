@@ -71,7 +71,7 @@ jobs:
         run: |
           python -m ipykernel install --user --name=bio --display-name "Python (bio)"
 
-      - name: Execute week5.ipynb (as required: `jupyter execute week5.ipynb`)
+      - name: Execute week5.ipynb 
         shell: bash -l {0}
         working-directory: week5
         run: |
