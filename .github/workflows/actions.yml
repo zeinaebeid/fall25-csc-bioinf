@@ -30,19 +30,19 @@ jobs:
       - name: Set up Homebrew
         uses: Homebrew/actions/setup-homebrew@main
       
-      - name: Week 5 Tools
-        run: brew install minimap2 samtools bcftools
-      - uses: conda-incubator/setup-miniconda@v3
-      - name: Installing hapcut2
-        shell: bash -l {0}
-        run: |
-          conda config --add channels conda-forge
-          conda install bioconda::hapcut2
-          conda install -y papermill
+   #   - name: Week 5 Tools
+   #     run: brew install minimap2 samtools bcftools
+   #   - uses: conda-incubator/setup-miniconda@v3
+   #   - name: Installing hapcut2
+   #     shell: bash -l {0}
+   #     run: |
+   #       conda config --add channels conda-forge
+   #       conda install bioconda::hapcut2
+   #       conda install -y papermill
           
-      - name: Test
-        shell: bash -l {0}
-        run: which hapcut2
+  #    - name: Test
+  #     shell: bash -l {0}
+  #      run: which hapcut2
       - name: Install jupyter
         run: pip install jupyter
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
@@ -65,8 +65,8 @@ jobs:
     #    run: bash week4/evaluate.sh
     
     #---------------------- Week 5/6 Deliverable  -------------------------------------
-      - name: Week 5
-        shell: bash -l {0}
-        run: |
-          conda activate test
-          jupyter nbconvert --to notebook --execute week5/week5.ipynb --stdout
+    #  - name: Week 5
+    #    shell: bash -l {0}
+    #    run: |
+    #     conda activate test
+    #      jupyter nbconvert --to notebook --execute week5/week5.ipynb --stdout
