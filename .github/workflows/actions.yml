@@ -27,8 +27,8 @@ jobs:
           echo "CODON_PYTHON=${CODON_PYTHON}" >> $GITHUB_ENV
           pip install matplotlib  # Dependencies for week1
           
-      - name: Set up Homebrew
-        uses: Homebrew/actions/setup-homebrew@main
+   #   - name: Set up Homebrew
+   #     uses: Homebrew/actions/setup-homebrew@main
       
    #   - name: Week 5 Tools
    #     run: brew install minimap2 samtools bcftools
